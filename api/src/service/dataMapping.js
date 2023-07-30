@@ -3,9 +3,11 @@ import csv from 'csv-parser';
 import MovieDomain from '../domain/movieDomain.js';
 import ProducerDomain from '../domain/producerDomain.js';
 import StudioDomain from '../domain/studioDomain.js';
-const movieDomain = new MovieDomain();
-const producerDomain = new ProducerDomain();
-const studioDomain = new StudioDomain();
+import VerifySameProducerDomain from '../domain/sameProducerDomain.js';
+const movieDomain              =  new MovieDomain();
+const producerDomain           =  new ProducerDomain();
+const studioDomain             =  new StudioDomain();
+const verifySameProducerDomain =  new VerifySameProducerDomain();
 
 
 export default async function teste() {
@@ -17,11 +19,11 @@ export default async function teste() {
 
       if(data.winner == "yes")
         data.winner = true;
+      else data.winner = false;
       const movie = {
         name: data.title,
         date: data.year,
-        win:  data.winner,
-        idProducer: 1,
+        win:  data.winner
       }
 
       const producer = {
@@ -31,7 +33,9 @@ export default async function teste() {
       const studio = {
         name: data.studios
       }
-
+      
+    console.log(await verifySameProducerDomain.insert(producer));
+    await verifySameProducerDomain.insert(producer)
     await movieDomain.insert(movie);
     await producerDomain.insert(producer);
     await studioDomain.insert(studio)
