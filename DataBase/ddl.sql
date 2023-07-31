@@ -1,18 +1,40 @@
 use GoldenRaspberryAwards;
 
 show tables;
+    
+update tb_movie set id_producer = 1 where id_movie = 1; 
 
 insert into tb_producer (nm_producer)
-	values 				('Avi Lerner, Kevin King Templeton, Yariv Lerner, and Les Weldon');
+	values				('Allan Carr');
+
+SELECT * FROM tb_producer WHERE nm_producer = 'Allan Carr';
+
+SELECT COUNT(*) as count
+            FROM tb_producer 
+        WHERE nm_producer = ?;
     
-    
-select * from tb_producer;
+select * from tb_producer;	
 select * from tb_movie;
 select * from tb_studio;
 
-drop table tb_producer;
+/*
+select tb_producer.id_producer,
+	 tb_producer.nm_producer,
+	id_movie,
+    nm_title,
+     bl_win,
+     nm_producer
+from tb_movie
+inner join tb_producer
+where tb_producer.nm_producer = 'Allan Carr'
+and tb_movie.bl_win = 1;
+*/
+
+
 drop table tb_movie;
 drop table tb_studio;
+drop table tb_producer;
+
 
 create table tb_producer(
 	id_producer 	int primary key auto_increment,
