@@ -1,12 +1,16 @@
 import 'dotenv/config';
-import teste  from './service/dataMapping.js';
-import DataBaseDomain from './domain/dataBaseDomain.js';
-await teste();
 
-// Criando uma instância da classe importada
+import DataMapping  from './service/dataMapping.js';
+//await DataMapping();
+
+import Teste from './service/testDataMapping.js'
+await Teste();
+
+import DataBaseDomain from './domain/dataBaseDomain.js';
+// Criando uma instância da classe importada ^^^^^^
 const dataBaseDomain = new DataBaseDomain();
 
-import aa from './controller/dadosController.js';
+//import aa from './controller/dadosController.js';
 
 import express from 'express';
 import cors from 'cors';
@@ -16,7 +20,7 @@ server.use(cors());
 server.use(express.json());
 
 // configuração dos endpoints
-server.use(aa);
+//server.use(aa);
 
 server.listen(process.env.PORT, () => console.log(`API conectada na Porta ${process.env.PORT}`));
 
