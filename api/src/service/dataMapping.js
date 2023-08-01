@@ -10,46 +10,43 @@ const studioDomain = new StudioDomain();
 let linesCSV = [];
 
 export default async function importDataCsv() {
-
   fs.createReadStream('movielist.csv')
     .pipe(csv({ separator: ';' }))
     .on('data', async (data) => {
       try {
-
-        linesCSV.push(data)
-
+        linesCSV.push(data);
       } catch (error) {
         console.error('Erro ao enviar os dados:', error);
       }
     })
     .on('end', async () => {
-      await importData() 
-      console.log('Dados Incluidos com sucesso!')
+      await importData();
+      console.log('Dados Incluidos com sucesso!');
     });
-
 }
 
 async function importData() {
-  console.log('aaa')
-    linesCSV.forEach(async data => {
+  console.log('Enviando Dados...');
+  for (const data of linesCSV) {
+    const producer = {
+      name: data.producers
+    }
 
-      const movie = {
-        name: data.title,
-        date: data.year,
-        win: data.winner == 'yes'
-      }
+    const movie = {
+      name: data.title,
+      date: data.year,
+      win: data.winner == 'yes'
+    }
 
-      const producer = {
-        name: data.producers
-      }
+    const studio = {
+      name: data.studios
+    }
 
-      const studio = {
-        name: data.studios
-      }
+    //console.log(await producerDomain.consult(producer))
 
-      await producerDomain.insert(producer)
-      await movieDomain.insert(movie);
-      await studioDomain.insert(studio);
-
-    });
-}
+    await producerDomain.insert(producer)
+    await movieDomain.insert(movie);
+    await studioDomain.insert(studio);
+  }
+ 
+} 

@@ -1,15 +1,17 @@
 import ProducerRepository  from '../repository/producerRepository.js';
-const producerRepository = new ProducerRepository()
+const producerRepository = new ProducerRepository();
 
-import VerifySameProducerRepository from "../repository/producerRepository.js";
-const verifySameProducer = new VerifySameProducerRepository()
+import VerifySameProducerRepository from '../repository/producerRepository.js';
+const verifySameProducer = new VerifySameProducerRepository();
 
+import ConsultById from '../repository/producerRepository.js';
+const consultById = new ConsultById()
 
 export default class ProducerDomain {
 
+    // Validação de duplicidade no DataBase
     async isDuplicity(name) {
         let result = await verifySameProducer.consultByName(name);
-        //console.log(result)
         return result[0].count > 0;
     }
 
@@ -20,6 +22,11 @@ export default class ProducerDomain {
 
         if(!resultIsDuplicity) 
             await producerRepository.insert(producer);
+    }
+
+    async consult(producer) {
+        return await consultById.consultById(producer.name)
+        
     }
 
 }

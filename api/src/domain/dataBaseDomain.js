@@ -5,8 +5,6 @@ const dataBaseRepository = new DataBaseRepository()
 export default class DataBaseDomain {
 
     async killDB() {
-
-        await dataBaseRepository.killDB()
-
+        await dataBaseRepository.killDB();
     }
 }

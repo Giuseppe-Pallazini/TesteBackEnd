@@ -4,7 +4,6 @@ import importDataCsv  from './service/dataMapping.js';
 await importDataCsv();
 
 import DataBaseDomain from './domain/dataBaseDomain.js';
-
 // Criando uma instância da classe importada ^^^^^^
 const dataBaseDomain = new DataBaseDomain();
 

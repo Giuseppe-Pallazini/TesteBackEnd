@@ -9,7 +9,6 @@ export default class ProducerRepository {
                                     values 		 (?)`
         con.beginTransaction()
         const linhas = await con.query(comando, [producer.name]);
-        con.commit()
         return linhas;
     }
 
@@ -19,7 +18,15 @@ export default class ProducerRepository {
         FROM tb_producer 
         WHERE nm_producer = ?`
         const linhas = await con.execute(comando, [name]);
-        console.log(linhas[0]);
+        return linhas[0];
+    }
+
+    async consultById(name) {
+        const comando = 
+        `SELECT id_producer
+        FROM tb_producer 
+        WHERE nm_producer = ?`
+        const linhas = await con.execute(comando, [name]);
         return linhas[0];
     }
 }

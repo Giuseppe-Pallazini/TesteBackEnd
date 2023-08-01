@@ -10,5 +10,14 @@ export default class StudioRepository{
     const linhas = await con.query(comando, [studio.name]);
     return linhas[0];
     }
+
+    async consultByName(name) {
+        const comando = 
+        `SELECT SQL_NO_CACHE COUNT(*) as count
+        FROM tb_studio 
+        WHERE nm_studio = ?`
+        const linhas = await con.execute(comando, [name]);
+        return linhas[0];
+    }
 }
 
