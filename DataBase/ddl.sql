@@ -9,9 +9,9 @@ insert into tb_producer (nm_producer)
 
 SELECT * FROM tb_producer WHERE nm_producer = 'Allan Carr';
 
-SELECT COUNT(*) as count
+SELECT SQL_NO_CACHE COUNT(*) as count
             FROM tb_producer 
-        WHERE nm_producer = ?;
+        WHERE nm_producer = 'Allan Carr';
     
 select * from tb_producer;	
 select * from tb_movie;
@@ -52,5 +52,7 @@ create table tb_movie(
     dt_movie		year,
     bl_win			bool,
     id_producer		int,
-    foreign key (id_producer) references tb_producer (id_producer)
+    id_studio		int,
+    foreign key (id_producer) references tb_producer (id_producer),
+    foreign key (id_studio) references tb_studio (id_studio)
 )

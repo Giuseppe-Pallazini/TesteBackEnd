@@ -7,7 +7,7 @@ export default class StudioRepository{
     const comando = `insert into tb_studio (nm_studio)
                                  values	       (?)`
     
-    const [linhas] = await con.query(comando, [studio.name]);
+    const linhas = await con.query(comando, [studio.name]);
     return linhas[0];
     }
 }

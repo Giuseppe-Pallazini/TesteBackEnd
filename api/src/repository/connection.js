@@ -5,7 +5,8 @@ const con = await mysql.createConnection({
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PWD,
     database: process.env.MYSQL_DB,
-    port: 3306
+    port: 3306,
+    flags: 'TRANSACTIONS'
 })
 
 console.log('BD Conectado')
