@@ -28,6 +28,7 @@ export default async function importDataCsv() {
 async function importData() {
   console.log('Enviando Dados...');
   for (const data of linesCSV) {
+
     const producer = {
       name: data.producers
     }
@@ -42,11 +43,20 @@ async function importData() {
       name: data.studios
     }
 
-    //console.log(await producerDomain.consult(producer))
-
-    await producerDomain.insert(producer)
-    await movieDomain.insert(movie);
+    //* Envia os Studios ao DB, a Domain faz a validação e retorna o ID pra ser jogado na tb_movie
     await studioDomain.insert(studio);
+    const resultStudio = await studioDomain.consultID(studio);
+    const studioId = resultStudio[0].id_studio;
+    movie.id_studio = studioId;
+
+
+    //* Envia os Producers ao DB, a Domain faz a validação e retorna o ID pra ser jogado na tb_movie
+    await producerDomain.insert(producer);
+    const result = await producerDomain.consultID(producer);
+    const producerId = result[0].id_producer;
+    movie.id_producer = producerId;
+
+    await movieDomain.insert(movie);
   }
- 
+
 } 

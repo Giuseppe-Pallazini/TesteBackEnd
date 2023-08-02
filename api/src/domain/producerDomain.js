@@ -24,9 +24,8 @@ export default class ProducerDomain {
             await producerRepository.insert(producer);
     }
 
-    async consult(producer) {
-        return await consultById.consultById(producer.name)
-        
+    async consultID(producer) {
+        return await consultById.consultID(producer.name);
     }
 
 }

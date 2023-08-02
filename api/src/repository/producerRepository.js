@@ -21,11 +21,11 @@ export default class ProducerRepository {
         return linhas[0];
     }
 
-    async consultById(name) {
+    async consultID(name) {
         const comando = 
-        `SELECT id_producer
-        FROM tb_producer 
-        WHERE nm_producer = ?`
+        `SELECT id_producer	
+            FROM tb_producer 	
+        WHERE nm_producer 	= ?`
         const linhas = await con.execute(comando, [name]);
         return linhas[0];
     }

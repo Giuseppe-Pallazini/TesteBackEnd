@@ -1,6 +1,6 @@
 use GoldenRaspberryAwards;
 
-DROP TABLE tb_producer_movie;
+DROP TABLE tb_producer_studio_movie;
 DROP TABLE tb_movie;
 DROP TABLE tb_studio;
 DROP TABLE tb_producer;
@@ -20,9 +20,15 @@ CREATE TABLE tb_movie(
 	id_movie		INT PRIMARY KEY AUTO_INCREMENT,
     nm_title		VARCHAR(200),
     dt_movie		YEAR,
-    bl_win			BOOL,
-    id_producer		INT,
-    id_studio		INT,
+    bl_win			BOOL
+);
+
+CREATE TABLE tb_producer_studio_movie (
+    id_producer_movie INT PRIMARY KEY AUTO_INCREMENT,
+    id_producer INT,
+	id_studio INT,
+    id_movie INT,
     FOREIGN KEY (id_producer) REFERENCES tb_producer (id_producer),
+    FOREIGN KEY (id_movie) REFERENCES tb_movie (id_movie),
     FOREIGN KEY (id_studio) REFERENCES tb_studio (id_studio)
 );

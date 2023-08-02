@@ -4,6 +4,9 @@ const studioRepository = new StudioRepository()
 import VerifySameStudio from "../repository/studioRepository.js";
 const verifySameStudio = new VerifySameStudio()
 
+import ConsultById from '../repository/studioRepository.js';
+const consultById = new ConsultById()
+
 
 export default class StudioDomain {
 
@@ -18,5 +21,9 @@ export default class StudioDomain {
 
           if(!resultIsDuplicity)
           await studioRepository.insert(studio);
-       } 
+     }
+     
+     async consultID(studio) {
+          return await consultById.consultID(studio.name);
+      }
 }

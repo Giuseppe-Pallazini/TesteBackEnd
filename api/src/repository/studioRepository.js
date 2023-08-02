@@ -19,5 +19,14 @@ export default class StudioRepository{
         const linhas = await con.execute(comando, [name]);
         return linhas[0];
     }
+
+    async consultID(name) {
+        const comando = 
+        `SELECT id_studio	
+            FROM tb_studio 	
+        WHERE nm_studio 	= ?`
+        const linhas = await con.execute(comando, [name]);
+        return linhas[0];
+    }
 }
 
