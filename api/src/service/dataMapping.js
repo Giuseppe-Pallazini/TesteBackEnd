@@ -14,7 +14,10 @@ export default async function importDataCsv() {
     .pipe(csv({ separator: ';' }))
     .on('data', async (data) => {
       try {
+
+        // Insere o data no fim do array 
         linesCSV.push(data);
+
       } catch (error) {
         console.error('Erro ao enviar os dados:', error);
       }
@@ -28,6 +31,8 @@ export default async function importDataCsv() {
 async function importData() {
   console.log('Enviando Dados...');
   for (const data of linesCSV) {
+
+    // data.? <- Puxa os dados do CSV
 
     const producer = {
       name: data.producers
